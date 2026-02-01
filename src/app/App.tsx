@@ -151,7 +151,7 @@ export default function App() {
               <img 
                 src={hexagonAntcomLogo} 
                 alt="Hexagon Antcom Logo" 
-                className="max-w-[180px] h-auto opacity-90 hover:opacity-100 transition-opacity"
+                className="max-w-[225px] h-auto opacity-90 hover:opacity-100 transition-opacity"
               />
             </div>
 
