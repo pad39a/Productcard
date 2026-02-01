@@ -1,7 +1,7 @@
 
-  # 7-Day Japan Itinerary
+  # Product_Card_2026
 
-  This is a code bundle for 7-Day Japan Itinerary. The original project is available at https://www.figma.com/design/ARrOJD2JMjEu7FBc1zwgrX/7-Day-Japan-Itinerary.
+  This is a code bundle for Product_Card_2026. The original project is available at https://www.figma.com/design/ARrOJD2JMjEu7FBc1zwgrX/Product_Card_2026.
 
   ## Running the code
 
