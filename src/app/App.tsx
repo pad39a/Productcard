@@ -5,6 +5,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { ChevronLeft, ExternalLink } from 'lucide-react';
 import hexagonAntcomLogo from 'figma:asset/9854e5f16552ed056e5d55af39a0eb0abc6892f4.png';
 import antennaProductImage from 'figma:asset/452b69bb395cc19053e4cb69abfc21bca62c5faa.png';
+import heroBackground from 'figma:asset/8624f9524d3544dc8d7bd9fa3ead71e6a5cf4a01.png';
 import 'flag-icons/css/flag-icons.min.css';
 
 export default function App() {
@@ -49,39 +50,59 @@ export default function App() {
   const tabs = ['Aviation', 'Space', 'Defense', 'R & D'];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Inter' }}>
-      {/* Header */}
-      <div className="border-b border-gray-200 bg-white">
-        <div className="max-w-[1440px] mx-auto px-8">
+    <div className="min-h-screen bg-slate-50" style={{ fontFamily: 'Inter' }}>
+      {/* Hero Header */}
+      <div className="relative bg-slate-900 border-b border-white/10 shadow-2xl">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 overflow-hidden">
+          <ImageWithFallback
+            src={heroBackground}
+            alt="Background"
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-transparent" />
+        </div>
+
+        <div className="relative max-w-[1440px] mx-auto px-8 pt-6 pb-0">
           {/* Back Button */}
-          <button className="flex items-center gap-2 py-4 text-blue-600 text-[14px] font-medium hover:text-blue-700" style={{ fontFamily: 'Inter' }}>
-            <ChevronLeft size={16} />
-            Back
+          <button className="flex items-center gap-2 mb-8 text-blue-300 text-[14px] font-medium hover:text-white transition-colors group" style={{ fontFamily: 'Inter' }}>
+            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            Back to Products
           </button>
 
-          {/* Product Title and Tabs */}
-          <div className="flex items-center gap-4 pb-4">
-            <h1 className="text-[24px] font-bold" style={{ fontFamily: 'Inter' }}>
-              Antcom G3ANT-3XXX
-            </h1>
-            <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded text-[12px] font-medium" style={{ fontFamily: 'Inter' }}>
-              GPS Antenna
-            </span>
-            <div className="flex gap-2 ml-auto">
+          {/* Product Title and Info */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="px-2 py-0.5 bg-blue-500/20 text-blue-200 border border-blue-500/30 rounded text-[12px] font-medium tracking-wide uppercase" style={{ fontFamily: 'Inter' }}>
+                  GPS Antenna
+                </span>
+                <span className="text-slate-400 text-[14px]">Ref: G3-3XXX</span>
+              </div>
+              <h1 className="text-[32px] md:text-[40px] font-bold text-white tracking-tight drop-shadow-sm" style={{ fontFamily: 'Inter' }}>
+                Antcom G3ANT-3XXX
+              </h1>
+              <p className="text-slate-300 mt-2 max-w-xl text-[15px] leading-relaxed">
+                High-reliability antenna designed for critical aviation and space applications, offering precision positioning in demanding environments.
+              </p>
+            </div>
+            
+            {/* Tabs - Docked at bottom */}
+            <div className="flex gap-1 bg-white/5 p-1 rounded-lg backdrop-blur-md border border-white/10">
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 text-[13px] font-semibold transition-colors ${
+                  className={`px-5 py-2.5 rounded-md text-[13px] font-semibold transition-all duration-200 ${
                     activeTab === tab
                       ? tab === 'Aviation'
-                        ? 'bg-orange-500 text-black'
+                        ? 'bg-orange-500 text-white shadow-lg shadow-orange-900/20'
                         : tab === 'Space'
-                        ? 'bg-gray-800 text-white'
+                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
                         : tab === 'Defense'
-                        ? 'bg-green-600 text-white'
+                        ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20'
                         : 'bg-orange-500 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      : 'text-slate-300 hover:text-white hover:bg-white/10'
                   }`}
                   style={{ fontFamily: 'Inter' }}
                 >
@@ -94,121 +115,113 @@ export default function App() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-[1440px] mx-auto px-8 py-8">
-        {/* Product Header Section */}
-        <div className="grid grid-cols-3 gap-8 mb-8">
-          {/* Left: USA Flag and Request Quote */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-[14px] font-medium" style={{ fontFamily: 'Inter' }}>Canada</span>
-              <span className="fi fi-ca"></span>
-            </div>
-            <button className="px-6 py-2.5 bg-orange-500 text-black rounded text-[14px] font-semibold hover:bg-orange-600 transition-colors" style={{ fontFamily: 'Inter' }}>
-              Request Loan or Sample
-            </button>
-            <div className="mt-4">
-              <a href="#" className="flex items-center gap-1 text-[14px] text-gray-700 hover:text-blue-600" style={{ fontFamily: 'Inter' }}>
-                G3Ant-3XXX
-                <ExternalLink size={14} />
-              </a>
-            </div>
-          </div>
-
-          {/* Center: Logo */}
-          <div className="flex items-center justify-center">
-            <div className="text-center">
-              <div className="mx-auto mb-2 flex items-center justify-center">
-                <img 
-                  src={hexagonAntcomLogo} 
-                  alt="Hexagon Antcom Logo" 
-                  className="max-w-full h-auto max-h-[100px]"
-                />
+      <div className="max-w-[1440px] mx-auto px-8 py-10 space-y-8">
+        
+        {/* Product Highlights Card */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+            
+            {/* Left: Actions */}
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center gap-2 mb-1 text-slate-500 text-[12px] font-medium uppercase tracking-wider">
+                  Origin
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[18px] font-semibold text-slate-900" style={{ fontFamily: 'Inter' }}>Canada</span>
+                  <span className="fi fi-ca text-[24px] shadow-sm rounded-sm"></span>
+                </div>
+              </div>
+              
+              <div className="pt-2">
+                <button className="w-full sm:w-auto px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-[14px] font-semibold shadow-md shadow-orange-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0" style={{ fontFamily: 'Inter' }}>
+                  Request Loan or Sample
+                </button>
+                <div className="mt-4 flex items-center gap-2">
+                   <a href="#" className="text-[13px] text-slate-500 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                    <ExternalLink size={12} />
+                    View Datasheet
+                   </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right: Product Image */}
-          <div className="flex items-center justify-center">
-            <ImageWithFallback
-              src={antennaProductImage}
-              alt="GPS Antenna"
-              className="w-full max-w-md h-auto object-contain rounded-lg"
-              style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
-            />
+            {/* Center: Logo */}
+            <div className="flex justify-center py-6 md:py-0 border-y md:border-y-0 md:border-x border-slate-100">
+              <img 
+                src={hexagonAntcomLogo} 
+                alt="Hexagon Antcom Logo" 
+                className="max-w-[180px] h-auto opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
+
+            {/* Right: Product Image */}
+            <div className="flex justify-center relative group">
+              <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <ImageWithFallback
+                src={antennaProductImage}
+                alt="GPS Antenna"
+                className="relative w-full max-w-[280px] h-auto object-contain transform group-hover:scale-105 transition-transform duration-500"
+                style={{ filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}
+              />
+            </div>
           </div>
         </div>
 
         {/* Component Specifications */}
-        <div className="mb-8">
-          <h2 className="text-[16px] font-semibold mb-4" style={{ fontFamily: 'Inter' }}>
-            Component specifications
+        <div>
+          <h2 className="text-[18px] font-bold text-slate-900 mb-4 flex items-center gap-2" style={{ fontFamily: 'Inter' }}>
+            <span className="w-1.5 h-5 bg-blue-600 rounded-full"></span>
+            Component Specifications
           </h2>
-          <ComponentSpecTable data={componentSpec} />
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+             <ComponentSpecTable data={componentSpec} />
+          </div>
         </div>
 
-        {/* Three Column Detailed Specs */}
-        <div className="grid grid-cols-3 gap-6 mb-8">
+        {/* Detailed Specs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <DetailedSpecColumn title="Electrical" rows={electricalSpecs} />
           <DetailedSpecColumn title="Mechanical" rows={mechanicalSpecs} />
           <DetailedSpecColumn title="Environmental" rows={environmentalSpecs} />
         </div>
 
-        {/* Manufacturer Section */}
-        <div className="border-t border-gray-200 pt-6">
-          <h3 className="text-[14px] font-semibold mb-3" style={{ fontFamily: 'Inter' }}>
-            Manufacturer
+        {/* Manufacturer Info */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+          <h3 className="text-[16px] font-bold text-slate-900 mb-6 flex items-center gap-2" style={{ fontFamily: 'Inter' }}>
+             <span className="w-1.5 h-5 bg-slate-600 rounded-full"></span>
+            Manufacturer Information
           </h3>
-          <div className="grid grid-cols-3 gap-6">
-            <div>
-              <table className="w-full border border-gray-300">
-                <tbody>
-                  <tr className="border-b border-gray-300">
-                    <td className="px-3 py-2 text-[13px] bg-gray-50 border-r border-gray-300" style={{ fontFamily: 'Inter' }}>
-                      Website URL
-                    </td>
-                    <td className="px-3 py-2 text-[13px]" style={{ fontFamily: 'Inter' }}>
-                      <a 
-                        href="https://www.navtechgps.com/brands/antcom/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        https://www.navtechgps.com/brands/antcom/
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-300">
-                    <td className="px-3 py-2 text-[13px] bg-gray-50 border-r border-gray-300" style={{ fontFamily: 'Inter' }}>
-                      COO
-                    </td>
-                    <td className="px-3 py-2 text-[13px]" style={{ fontFamily: 'Inter' }}>
-                      Canada
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-3 py-2 text-[13px] bg-gray-50 border-r border-gray-300" style={{ fontFamily: 'Inter' }}>
-                      Quality System
-                    </td>
-                    <td className="px-3 py-2 text-[13px]" style={{ fontFamily: 'Inter' }}>
-                      AS9100
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="col-span-2">
-              <div className="border border-gray-300 p-4">
-                <h4 className="text-[13px] font-semibold mb-2" style={{ fontFamily: 'Inter' }}>
-                  Additional
-                </h4>
-                <div className="text-[13px] text-gray-700 space-y-4" style={{ fontFamily: 'Inter' }}>
-                  <p>
-                    Antcom Corporation designs, develops and manufactures a wide range of GPS / GNSS antennas, as well a large selection of ground and satellite based antennas with frequencies ranging from 100 MHz to 50 GHz,  and also communication antennas and microwave products. It is an ISO 9001-2008 certified company with an extensive antenna product line.
-                  </p>
-                  <p>
-                    The Antcom line includes Global Positioning System (GPS) antennas, Global Navigation Satellite System (GNSS) antennas, as well as Galileo, GLONASS, BeiDou, and QZSS in the L1, L2, L5 bands, and SBAS antennas in L-Band, such as OmniSTAR™ antennas, as well as a broad range of single band and multi-band antennas for voice / video / data Link applications in the L, S, C, X and Ku bands for various critical ground, marine, aerospace communication and navigation communication applications all of which are equipped with a low noise amplifier (LNA).
-                  </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200/60">
+                <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Website</div>
+                <a 
+                  href="https://www.navtechgps.com/brands/antcom/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-blue-600 hover:text-blue-700 font-medium break-all block hover:underline"
+                >
+                  navtechgps.com/brands/antcom
+                </a>
+              </div>
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200/60">
+                <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Quality System</div>
+                <div className="text-[13px] text-slate-900 font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                  AS9100 Certified
                 </div>
+              </div>
+            </div>
+            
+            <div className="md:col-span-2">
+              <div className="prose prose-sm max-w-none text-slate-600 text-[14px] leading-relaxed">
+                <p className="mb-4">
+                  <span className="font-bold text-slate-900">Antcom Corporation</span> designs, develops and manufactures a wide range of GPS / GNSS antennas, as well as a large selection of ground and satellite based antennas with frequencies ranging from 100 MHz to 50 GHz.
+                </p>
+                <p>
+                  The Antcom line includes Global Positioning System (GPS) antennas, Global Navigation Satellite System (GNSS) antennas, as well as Galileo, GLONASS, BeiDou, and QZSS in the L1, L2, L5 bands. Products serve critical ground, marine, and aerospace communication applications.
+                </p>
               </div>
             </div>
           </div>
